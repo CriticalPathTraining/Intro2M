@@ -1,8 +1,8 @@
 ﻿section MyGraph;
 
 
-client_id = "6517bc44-7257-48ad-bdf8-309875fa9c71";
-client_secret = "yy7tglvQ9DjEA3dLduwSGq2nROExzdvfn6hvakhu2A4=";
+client_id = "983391cb-5879-4df5-bd59-26b1166fc20f";
+client_secret = "mWdoXB0jr7Y+0/G1Hu1UblX1UDQLhWgHXMy7YX8caCY=";
 redirect_uri = "https://preview.powerbi.com/views/oauthredirect.html";
 token_uri = "https://login.microsoftonline.com/organizations/oauth2/v2.0/token";
 authorize_uri = "https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize";
@@ -28,24 +28,29 @@ scopes = {
     "Sites.Read.All"
 };
 
-//
-// Exported function(s)
-//
+
 [DataSource.Kind="MyGraph", Publish="MyGraph.Publish"]
 shared MyGraph.ExecuteQuery = Value.ReplaceType(MyGraph.ExecuteQueryImpl, type function (url as Uri.Type) as any);
 
 MyGraph.ExecuteQueryImpl = (url as text) =>
     let
-      DefaultRequestHeaders = [Accept="application/json",#"OData-MaxVersion"="4.0"],      
-        //source = OData.Feed("https://graph.microsoft.com/v1.0" & query, null, [ ODataVersion = 4, MoreColumns = true ]),
-      Response = Web.Contents(url, [Headers=DefaultRequestHeaders]),
+
+      // create a record to define HTTP request headers
+      RequestHeaders = [ Accept="application/json", 
+                         #"OData-MaxVersion"="4.0"],      
+
+      // create a second record which contains the first record
+      OptionsRecord = [ Headers=RequestHeaders ],
+      
+      // pass the second record as parameter to Web.Contents
+      Response = Web.Contents(url, OptionsRecord),
+
       source = Json.Document(Response)
+        
     in
         source;
 
-//
-// Data Source definition
-//
+
 MyGraph = [
     Authentication = [
         OAuth = [
@@ -55,16 +60,13 @@ MyGraph = [
             Logout=Logout
         ]
     ],
-    Label = "Custom Connector to Microsoft Graphi API"
+    Label = "Custom Connector for the Microsoft Graph API"
 ];
 
-//
-// UI Export definition
-//
 MyGraph.Publish = [
     Beta = true,
     Category = "Other",
-    ButtonText = { "My Custom Data Connector", "Connect to the Microsoft Gra[ph API" },
+    ButtonText = { "My MS Graph Data Connector", "Connect to the Microsoft Graph API" },
     SourceImage = MyGraph.Icons,
     SourceTypeImage = MyGraph.Icons
 ];
@@ -74,38 +76,7 @@ MyGraph.Icons = [
     Icon32 = { Extension.Contents("MyGraph32.png"), Extension.Contents("MyGraph40.png"), Extension.Contents("MyGraph48.png"), Extension.Contents("MyGraph64.png") }
 ];
 
-//
-// OAuth implementation
-//
-// See the following links for more details on AAD/Graph OAuth:
-// * https://docs.microsoft.com/en-us/azure/active-directory/active-directory-protocols-oauth-code 
-// * https://graph.microsoft.io/en-us/docs/authorization/app_authorization
-//
-// StartLogin builds a record containing the information needed for the client
-// to initiate an OAuth flow. Note for the AAD flow, the display parameter is
-// not used.
-//
-// resourceUrl: Derived from the required arguments to the data source function
-//              and is used when the OAuth flow requires a specific resource to 
-//              be passed in, or the authorization URL is calculated (i.e. when
-//              the tenant name/ID is included in the URL). In this example, we
-//              are hardcoding the use of the "common" tenant, as specified by
-//              the 'authorize_uri' variable.
-// state:       Client state value we pass through to the service.
-// display:     Used by certain OAuth services to display information to the
-//              user.
-//
-// Returns a record containing the following fields:
-// LoginUri:     The full URI to use to initiate the OAuth flow dialog.
-// CallbackUri:  The return_uri value. The client will consider the OAuth
-//               flow complete when it receives a redirect to this URI. This
-//               generally needs to match the return_uri value that was
-//               registered for your application/client. 
-// WindowHeight: Suggested OAuth window height (in pixels).
-// WindowWidth:  Suggested OAuth window width (in pixels).
-// Context:      Optional context value that will be passed in to the FinishLogin
-//               function once the redirect_uri is reached. 
-//
+// build URL with query string for login to Azure AD
 StartLogin = (resourceUrl, state, display) =>
     let
         authorizeUrl = authorize_uri & "?" & Uri.BuildQueryString([
@@ -126,14 +97,8 @@ StartLogin = (resourceUrl, state, display) =>
             Context = null
         ];
 
-// FinishLogin is called when the OAuth flow reaches the specified redirect_uri. 
-// Note for the AAD flow, the context and state parameters are not used. 
-//
-// context:     The value of the Context field returned by StartLogin. Use this to 
-//              pass along information derived during the StartLogin call (such as
-//              tenant ID)
-// callbackUri: The callbackUri containing the authorization_code from the service.
-// state:       State information that was specified during the call to StartLogin. 
+// prepare data to make HTTP call to obtain access token and refreh token
+
 FinishLogin = (context, callbackUri, state) =>
     let
         // parse the full callbackUri, and extract the Query string
@@ -147,8 +112,7 @@ FinishLogin = (context, callbackUri, state) =>
     in
         result;
 
-// Called when the access_token has expired, and a refresh_token is available.
-// 
+// Called if access token has expired and a refresh_token is available.
 Refresh = (resourceUrl, refresh_token) => TokenMethod("refresh_token", "refresh_token", refresh_token);
 
 Logout = (token) => logout_uri;

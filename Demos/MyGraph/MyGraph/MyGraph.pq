@@ -1,8 +1,8 @@
 ﻿section MyGraph;
 
 
-client_id = "6517bc44-7257-48ad-bdf8-309875fa9c71";
-client_secret = "yy7tglvQ9DjEA3dLduwSGq2nROExzdvfn6hvakhu2A4=";
+client_id = "983391cb-5879-4df5-bd59-26b1166fc20f";
+client_secret = "mWdoXB0jr7Y+0/G1Hu1UblX1UDQLhWgHXMy7YX8caCY=";
 redirect_uri = "https://preview.powerbi.com/views/oauthredirect.html";
 token_uri = "https://login.microsoftonline.com/organizations/oauth2/v2.0/token";
 authorize_uri = "https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize";
@@ -66,7 +66,7 @@ MyGraph = [
 MyGraph.Publish = [
     Beta = true,
     Category = "Other",
-    ButtonText = { "My Custom Data Connector", "Connect to the Microsoft Graph API" },
+    ButtonText = { "My MS Graph Data Connector", "Connect to the Microsoft Graph API" },
     SourceImage = MyGraph.Icons,
     SourceTypeImage = MyGraph.Icons
 ];
