@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>2b3981db-2b5f-4528-bc48-489a401647da</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Intro2M</RootNamespace>
+    <AssemblyName>Intro2M</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AllowNativeQuery>False</AllowNativeQuery>
+    <AsAction>False</AsAction>
+    <FastCombine>False</FastCombine>
+    <ClearLog>False</ClearLog>
+    <ShowEngineTraces>False</ShowEngineTraces>
+    <ShowUserTraces>False</ShowUserTraces>
+    <LegacyRedirects>False</LegacyRedirects>
+    <SuppressRowErrors>False</SuppressRowErrors>
+    <SuppressCellErrors>False</SuppressCellErrors>
+    <MaxRows>1000</MaxRows>
+    <ExtensionProject>No</ExtensionProject>
+    <Name>Intro2M</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Intro2M.pq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Listings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Listings\CleanText.m">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Listings\CreateTableFromRecords.m">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Listings\HelloWorld.m">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Listings\HelloWorldReversed.m">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Listings\ListGenerate.m">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Listings\MergeCustomersFromRecords.m">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Listings\ODataFeed.m">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Listings\RatPack.m">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Listings\RecordAndTableType.m">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Listings\Records.m">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Listings\StronglyTypedTable.m">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Listings\TotalSalesRevenue.m">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Listings\Variable Names.m">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Listings\WebContents.m">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <Target Name="Build" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

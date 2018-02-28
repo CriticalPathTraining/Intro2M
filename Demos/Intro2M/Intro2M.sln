@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4DF76451-A46A-4C0B-BE03-459FAAFA07E6}") = "Intro2M", "Intro2M\Intro2M.mproj", "{2B3981DB-2B5F-4528-BC48-489A401647DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B3981DB-2B5F-4528-BC48-489A401647DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B3981DB-2B5F-4528-BC48-489A401647DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B3981DB-2B5F-4528-BC48-489A401647DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B3981DB-2B5F-4528-BC48-489A401647DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D76FF5C2-4E76-4865-B2F9-7D219C4BE598}
+	EndGlobalSection
+EndGlobal
