@@ -66,6 +66,9 @@
     <Content Include="Listings\MergeCustomersFromRecords.m">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Listings\NFL Teams.m">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Listings\ODataFeed.m">
       <SubType>Content</SubType>
     </Content>
