@@ -1,0 +1,3 @@
+https://summatime.sharepoint.com/Shared%20Documents/SampleData.xlsx
+
+http://subliminalsystems.com/api/Customers??$select=CustomerId,FirstName,LastName,City,State,Zipcode,Gender,BirthDate&$filter=(CustomerId+le+10)
